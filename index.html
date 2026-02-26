@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎉</title>
+    <!-- โหลดฟอนต์ภาษาไทยให้ดูสวยขึ้น -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffe6e6; /* สีพื้นหลังพาสเทล */
+            font-family: 'Kanit', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 102, 102, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #ffb3b3;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .profile-img:hover {
+            transform: scale(1.05); /* ลูกเล่นขยายรูปตอนเอาเมาส์ชี้ */
+        }
+        h1 {
+            color: #ff4d4d;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 25px;
+        }
+        .hidden-message {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #fff0f0;
+            border-radius: 15px;
+            color: #444;
+            line-height: 1.8;
+            font-size: 1.1em;
+            border: 1px dashed #ffb3b3;
+        }
+        button {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            font-family: 'Kanit', sans-serif;
+            box-shadow: 0 4px 10px rgba(255, 77, 77, 0.3);
+        }
+        button:hover {
+            background: #ff3333;
+            transform: translateY(-3px);
+        }
+        /* อนิเมชันหัวใจตกจากฟ้า */
+        .heart {
+            position: fixed;
+            top: -10vh;
+            font-size: 24px;
+            z-index: 1;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎂 สุขสันต์วันเกิดนะ! 🎉</h1>
+        <p class="subtitle">วันนี้เป็นวันพิเศษของคนพิเศษ</p>
+
+        <!-- 1. เปลี่ยนลิงก์รูปตรง src="..." หรือใส่ชื่อไฟล์รูปของคุณแทน -->
+        <img src="https://images.unsplash.com/photo-1530103862676-de8892d075fa?auto=format&fit=crop&w=400&q=80" alt="Birthday Girl/Boy" class="profile-img">
+        
+        <br>
+        <button onclick="openGift()" id="giftBtn">กดดูของขวัญ 🎁</button>
+        
+        <div class="hidden-message" id="secretMsg">
+            <!-- 2. เปลี่ยนข้อความอวยพรตรงนี้ -->
+            <strong>ถึง... (คนเก่งของเรา)</strong><br><br>
+            ขอให้ปีนี้เป็นปีที่ดีมากๆ มีความสุขในทุกๆ วัน<br>
+            คิดหวังสิ่งไหนก็ขอให้สมปรารถนานะ<br>
+            สุขภาพร่างกายแข็งแรง รวยๆ เฮงๆ<br>
+            อยู่เป็นรอยยิ้มให้กันไปนานๆ รักนะ! 💖
+        </div>
+    </div>
+
+    <script>
+        function openGift() {
+            // ซ่อนปุ่ม และแสดงข้อความ
+            document.getElementById('giftBtn').style.display = 'none';
+            document.getElementById('secretMsg').style.display = 'block';
+            
+            // เรียกใช้ฟังก์ชันปล่อยหัวใจ
+            showerHearts();
+        }
+
+        function showerHearts() {
+            const emojis = ['💖', '🎉', '✨', '🎂', '🎁'];
+            for(let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    // สุ่มอิโมจิ
+                    heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                    // สุ่มตำแหน่งแนวนอน
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    // สุ่มความเร็วในการตก
+                    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(heart);
+                    
+                    // ลบ element ทิ้งเมื่อตกถึงพื้นเพื่อไม่ให้รกเครื่อง
+                    setTimeout(() => heart.remove(), 5000);
+                }, i * 100); // ทยอยปล่อยออกมา
+            }
+        }
+    </script>
+
+</body>
+</html>
